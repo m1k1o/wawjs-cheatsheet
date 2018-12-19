@@ -11,7 +11,7 @@ https://github.com/ainthek/wawjs
 | [04 Objekty](04_objekty.md)*                          |      8       |
 | [05 Patterny](05_patterny.md)                         |      6       |
 | [06 Funkcionálne prog.](06_funkcionalne_prog.md)      |      15      |
-| Streamy                                               |      6       |
+| [07 Streamy](07_streamy.md)                           |      6       |
 | Async                                                 |      6       |
 | Testing                                               |      3       |
 | **TOTAL**                                             |    **63**    |
