@@ -9,7 +9,7 @@ https://github.com/ainthek/wawjs
 | [02 Jazyk](02_jazyk.md)                               |      7       |
 | [03 Funkcie](03_funkcie.md)                           |      7       |
 | [04 Objekty](04_objekty.md)*                          |      8       |
-| Patterny                                              |      6       |
+| [05 Patterny](05_patterny.md)                         |      6       |
 | Funkcionálne prog.                                    |      15      |
 | Streamy                                               |      6       |
 | Async                                                 |      6       |
