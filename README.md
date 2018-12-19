@@ -13,7 +13,7 @@ https://github.com/ainthek/wawjs
 | [06 Funkcionálne prog.](06_funkcionalne_prog.md)      |      15      |
 | [07 Streamy](07_streamy.md)                           |      6       |
 | [08 Async](08_async.md)                               |      6       |
-| Testing                                               |      3       |
+| [09 Testing](09_testing.md)                           |      3       |
 | **TOTAL**                                             |    **63**    |
 
 \* TODO: Refactor
