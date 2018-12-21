@@ -17,3 +17,6 @@ https://github.com/ainthek/wawjs
 | **TOTAL**                                             |    **63**    |
 
 \* TODO: Refactor
+
+# jff
+[![](promises.png)](https://www.youtube.com/watch?v=dTQMd2I3drE)
