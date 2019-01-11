@@ -19,7 +19,8 @@ https://github.com/ainthek/wawjs
 \* TODO: Refactor
 
 # Testy
-[Test 01](test_01.md)
+- [Test 01](test_01.md)
+- [Test 02 (Promises)](test_02.md)
 
 # jff
 [![](promises.png)](https://www.youtube.com/watch?v=dTQMd2I3drE)
