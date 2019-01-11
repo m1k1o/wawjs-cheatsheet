@@ -1,7 +1,7 @@
 # wawjs cheat sheet
 https://github.com/ainthek/wawjs
 
-# Prehľad ([Text-only](text/))
+# Prehľad ([Text-only](text/)) ([Images-only](images/))
 
 |           Téma                                        | Počet otázok |
 |-------------------------------------------------------|--------------|
