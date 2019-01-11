@@ -8,7 +8,7 @@ Ako sa volá JS runtime s najnovšou verziou Javy?
 
 ![](images/01-platformy.png)
 
-Kde sá alokované všetky JS objekty?
+Kde sú alokované všetky JS objekty?
 - Heap je vo V8 (okrem bufferov, node ma na ne vlastny heap)
 
 Event loop
