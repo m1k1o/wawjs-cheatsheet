@@ -131,7 +131,24 @@ o.age = "slon"; // TypeError: age must be integer
 
 ## Introspection
 - In computing, type introspection is the ability of a program to **examine the type or properties of an object at runtime**.
-- a for ... in loop only iterates over enumerable, non-Symbol properties.
+
+### Enumerability
+An enumerable property is one that can be included in and visited during `for..in` loops or a similar iteration of properties, like:
+- `Object.keys()`
+- `Object.entries()`
+- `Object.values()`
+- `Object.assign()`
+- `JSON.stringify()`
+
+The `obj.propertyIsEnumerable()` method returns a Boolean indicating whether the specified property is enumerable.
+
+### Ownership
+Ownership of properties is determined by whether the property belongs to the object directly and not to its prototype chain.
+- `Object.getOwnPropertyNames()`
+- `Object.getOwnPropertySymbols()`
+- `Object.getOwnPropertyDescriptors()`
+
+The `obj.hasOwnProperty()` method returns a boolean indicating whether the object has the specified property as its own property (as opposed to inheriting it).
 
 ```js
 var o = {
@@ -170,18 +187,4 @@ for (let k in e) {
 /*
 job
 */
-
 ```
-
-- `hasOwnProperty()` method returns a boolean indicating whether the object has the specified property as its own property (as opposed to inheriting it).
-
-## Enumerable and own
-
-|                           | in | for..in | obj.hasOwnProperty | obj.propertyIsEnumerable | Object.keys | Object.getOwnPropertyNames | Object.getOwnPropertyDescriptors | Reflect.ownKeys() |
-|---------------------------|------|-------|-------|-------|-------|-------|-------|-------|
-| Enumerable                | true | true  | true  | true  | true  | true  | true  | true  |
-| Nonenumerable             | true | false | true  | false | false | true  | true  | true  |
-| Symbols keys              | true | false | true  | true  | false | false | true  | true  |
-| Inherited Enumerable      | true | true  | false | false | false | false | false | false |
-| Inherited Nonenumerable   | true | false | false | false | false | false | false | false |
-| Inherited Symbols keys    | true | false | false | false | false | false | false | false |
