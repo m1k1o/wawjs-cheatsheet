@@ -1,6 +1,6 @@
 # Prehľad
 
-- 01 Platforma & node a npm
+- [01 Platforma & node a npm](01_platforma_node_npm.md)
 - [02 Jazyk](02_jazyk.md)
 - [03 Funkcie](03_funkcie.md)
 - [04 Objekty](04_objekty.md)
