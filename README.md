@@ -1,7 +1,7 @@
 # wawjs cheat sheet
 https://github.com/ainthek/wawjs
 
-# Prehľad ([Text-only](text/)) ([Images-only](images/))
+# Prehľad ([Text-only](text/README.md)) ([Images-only](images/README.md))
 
 |           Téma                                        | Počet otázok |
 |-------------------------------------------------------|--------------|
@@ -17,6 +17,9 @@ https://github.com/ainthek/wawjs
 | **TOTAL**                                             |    **63**    |
 
 \* TODO: Refactor
+
+# Full version: [cheatsheet.md](cheatsheet.md)
+Info: Po úpravavách dokumentov v priečinku `text/` treba spustiť `build.sh`, ktoré aktualizuje `cheatsheet.md`.
 
 # Testy
 - [Test 01](test_01.md)
