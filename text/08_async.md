@@ -24,7 +24,42 @@
 
 ...
 
-## Callback hell
+## Callbacks
+
+### Sync
+```js
+function a(cb) {
+  cb();
+}
+```
+
+### Async
+```js
+function c(cb) {
+  setTimeout(cb, 0);
+}
+```
+
+### Example
+```js
+a(function() {
+  b();
+
+  c(function() {
+    d();
+  })
+
+  e();
+});
+f();
+```
+
+|                 | `a()` async   | `a()` sync    |
+|-----------------|---------------|---------------|
+| **`c()` async** | `a,f,b,c,e,d` | `a,b,c,e,f,d` |
+| **`c()` sync**  | `a,f,b,c,d,e` | `a,b,c,d,e,f` |
+
+### Callback hell
 Ku hlavných problémom programovania s callbackmi patrí:
 - CB môže byť buď sync alebo async.
 - CB sa moze zavolať viac krát alebo dokonca vôbec.

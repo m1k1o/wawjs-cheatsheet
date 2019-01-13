@@ -35,12 +35,14 @@ Zjednodušený (nekompletný) event loop.
 
 | Networking   | Filesystem | Processes     |
 |--------------|------------|---------------|
-| http         | fs         | child_process |
+| http         | fs\*       | child_process |
 | http2        |            | process       |
 | https        |            |               |
 | net          |            |               |
 | dgram        |            |               |
-| dns          |            |               |
+| dns\*        |            |               |
+
+*promises API.
 
 ### Concepts
 - events

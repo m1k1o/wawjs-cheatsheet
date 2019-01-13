@@ -1,5 +1,5 @@
 # wawjs cheat sheet
-https://github.com/ainthek/wawjs
+**DISCLAIMER**: THIS REPO HAS NOTHING TO DO WITH https://github.com/ainthek/wawjs
 
 # Prehľad ([Text-only](text/README.md)) ([Images-only](images/README.md))
 

@@ -163,6 +163,14 @@ readable
     });
 ```
 
+`stream.pipeline(...streams, callback)`
+
+A module method to pipe between streams forwarding errors and properly cleaning up and provide a callback when the pipeline is complete.
+
+`stream.finished(stream[, options], callback)`
+
+A function to get notified when a stream is no longer readable, writable or has experienced an error or a premature close event.
+
 ## Module Pattern
 Global namespace variable (`$, jQuery, dojo, ...`).
 
@@ -273,6 +281,33 @@ module.exports = function(dict) {  // <==
 var caseless = require("caseless");
 var o = /*new*/ caseless({ "A": 10, "b": 20 });
 o.get("a");
+```
+
+## Creation Method Pattern vs. Module Pattern
+
+### Module Pattern
+```js
+var mylib = {};
+
+(function(){
+    /* ... */
+
+    mylib = ;
+}());
+
+mylib.add = (function() {
+    /* ... */
+
+    return ;
+}())
+```
+
+### Creation Method Pattern
+```js
+function mylib() {
+    /* ... */
+}
+Caseless.prototype.add = /* ... */;
 ```
 
 ## Optional parametes (combinations)

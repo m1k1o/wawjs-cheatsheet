@@ -42,18 +42,72 @@ const compose = (f1, f2, f3, f4) => value => f1(f2(f3(f4(value))));
 ## Pure functions
 Function cannot depend on any mutable state.
 
-Bad - dependency on: 
+### Bad - dependency on: 
 - captured let, var 
 - captured const but with with mutable value
 - dependency on mutable or impure function
 - methods are impure by definition
 
-Ok – dependency on:
+```js
+function(n, options) {
+    return n < options.limit;
+}
+
+var LIMIT = 100;
+function below(n) {
+    return n < LIMIT;
+}
+
+const constants = { LIMIT: 100 };
+function below(n) {
+    return n < constants.LIMIT;
+}
+
+let LIMIT = () => 100;
+function below(n) {
+    return n < LIMIT();
+}
+
+function below(n) {
+    conosle.log(n);
+    return n < LIMIT();
+}
+```
+
+### Ok – dependency on:
 - no captured variables
 - captured primitive const
 - captured frozen object const
 - on constant and pure function
 - on immutable captured argument
+
+```js
+function below(n, limit) {
+    return n < limit;
+}
+
+function below(n) {
+    var LIMIT = 100;
+    return n < LIMIT;
+}
+
+const LIMIT = 100;
+function below(n) {
+    return n < LIMIT;
+}
+
+const LIMIT = () => 100;
+function below(n) {
+    return n < LIMIT();
+}
+
+function below(limit) {
+    return function(n) {
+        return n < limit;
+    }
+}
+below(100)(10);
+```
 
 **Referential transparency**: The function always gives the same return value for the same arguments. This means that the function cannot depend on any mutable state.
 
@@ -64,6 +118,7 @@ Higher order function is a function that does one of or both:
 - takes a **function as an argument**
 - returns **function**
 
+### Both
 ```js
 var f1 = function(exec) {
     return function() {
@@ -71,8 +126,24 @@ var f1 = function(exec) {
     }
 }
 
-f1(() => console.log("done"));
+f1(() => console.log("done"))();
 ```
+
+### Function as Argument
+```js
+setTimeout(function(){ /* ... */ }, 0)
+```
+
+- callback of async task
+- parametrized algorithms
+    - namiesto vymýšlania mien funkcii a wrapovania funkcionality, vymýšlame názvy replacerov, filtrov, comparatorov a reusujeme ich. `replaceSpaces(str) => str.replace(spaces,"-")`
+- transforming function 
+    - change signature, bind parameters, change context, add functionality (aspects), curry
+- parametrized iterations
+    - repeat, until, whilst
+
+### Functions Returning Functions
+Transform one function somehow: change signature, bind parameters, change context, add functionality (aspects). Curry..
 
 ## Transforming Functions
 Create new function, call the original.
@@ -273,6 +344,42 @@ ES has no traversal algorithms build in, except for:
 
 Process of visiting (checking and/or updating) each node in a tree data structure, exactly once. 
 
+```js
+var o = { 
+    foo: "bar",
+    arr: [1,2,3],
+    subo: {
+        foo2:"bar2"
+    }
+};
+
+// called with every property and its value
+function process(key, value) {
+    console.log(key + " : " + value);
+}
+
+function traverse(o, func) {
+    for (var i in o) {
+        func.apply(this, [i, o[i]]);  
+        if (o[i] !== null && typeof(o[i]) == "object") {
+            // going one step down in the object tree!!
+            traverse(o[i],func);
+        }
+    }
+}
+
+traverse(o, process);
+/*
+foo : bar
+arr : 1,2,3
+0 : 1
+1 : 2
+2 : 3
+subo : [object Object]
+foo2 : bar2
+*/
+```
+
 ## Rekurzia
 ```js
 function countDown(n) {
@@ -301,6 +408,24 @@ Partial application is the act of taking a function which takes multiple argumen
 9
 ```
 
+### Bind
+ECMAScript 5 introduced `bind()` which brings (among other things) native partially applied functions to JavaScript.
+
+```js
+function add(a,b,c) {
+    return a + b + c;
+}
+```
+
+This is how you partial it using `bind()`.
+
+```js
+var intermediate = add.bind(undefined, 1, 2);
+var result = intermediate(3); // 6
+```
+
+The first argument to `bind()` actually sets the infamous this context of the function. We can leave it undefined here, since it has no effect.
+
 ## Curried Function
 A function that will return a new function until it receives all it's arguments.
 
@@ -315,20 +440,3 @@ A function that will return a new function until it receives all it's arguments.
 >>> add(1, 1, 1)
 3
 ```
-### Bind
-ECMAScript 5 introduced `bind()` which brings (among other things) native currying to JavaScript. Once again, let’s take the add function.
-
-```js
-function add(a,b,c) {
-    return a + b + c;
-}
-```
-
-This is how you curry it using `bind()`.
-
-```js
-var intermediate = add.bind(undefined, 1, 2);
-var result = intermediate(3);// 6
-```
-
-The first argument to `bind()` actually sets the infamous this context of the function. We can leave it undefined here, since it has no effect.

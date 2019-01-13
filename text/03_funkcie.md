@@ -22,6 +22,27 @@ var add = function (num1, num2) {
 var add = (num1, num2) => num1 + num2;
 ```
 
+Arrow functions are anonymous and change the way `this` binds in functions.
+
+```js
+let Object2 = {
+    method1: function() {
+        this === Object2;
+
+        setTimeout(function() {
+            this !== Object2;
+        }, 0);
+
+        setTimeout(() => {
+            this === Object2;
+        }, 0);
+    },
+    method2: () => {
+        this !== Object2;
+    }
+}
+```
+
 ## Primary unit of execution
 - **evented** - event handling code is written as function.
 - only one function executed at the time (stack, event loop)

@@ -184,7 +184,12 @@ else stream.once("drain", write);
 By default, no encoding is assigned and stream data will be returned as **Buffer objects**.
 
 ```js
-const stream = fs.createReadStream(fileUtf8, "utf8")
+const stream = fs.createReadStream(fileUtf8, "utf8");
+
+const stream = fs.createReadStream(fileUtf8, {
+    highWatermark: 7,
+    encoding: "utf8"
+});
 ```
 
 The Readable stream will properly handle multi-byte characters delivered through the stream that would otherwise become improperly decoded if simply pulled from the stream as Buffer objects.
@@ -194,7 +199,7 @@ The Readable stream will properly handle multi-byte characters delivered through
 žaba ťava vôl.
 
 // without encoding:
-aba ?
+žaba ?
 ?ava v?
 ?l
 
