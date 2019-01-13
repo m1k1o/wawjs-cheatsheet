@@ -8,4 +8,4 @@
 - [06 Funkcionálne prog.](06_funkcionalne_prog.md)
 - [07 Streamy](07_streamy.md)
 - [08 Async](08_async.md)
-- 09 Testing
+- [09 Testing](09_testing.md)
