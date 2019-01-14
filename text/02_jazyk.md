@@ -4,6 +4,25 @@
 - functions
 - objects
 
+## Using Logical Operators with Non-Boolean Values
+The value produced by a `&&` or `||` operator is not necessarily of type Boolean. The value produced will always be the value of one of the two operand expressions.
+
+```js
+"foo" && "bar"; // "bar"
+"bar" && "foo"; // "foo"
+"foo" && "";    // ""
+""    && "foo"; // ""
+
+"foo" || "bar"; // "foo"
+"bar" || "foo"; // "bar"
+"foo" || "";    // "foo"
+""    || "foo"; // "foo"
+```
+
+Both `&&` and `||` result in the value of (exactly) one of their operands:
+- `A && B` returns the value **A** if **A** can be coerced into `false`; otherwise, it returns **B**.
+- `A || B` returns the value **A** if **A** can be coerced into `true`; otherwise, it returns **B**.
+
 ## JavaScript data types and data structures
 
 ### Data Types
