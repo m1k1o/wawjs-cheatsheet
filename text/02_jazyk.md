@@ -258,6 +258,47 @@ Object.is(   [1, 2], [1, 2] )    // false
 Object.is(       {}, {}     )    // false
 ```
 
+### Equality Matrix
+`a == b` - Abstract Equality Comparison
+|             | `undefined` | `null`      | `"0"`       | `0`         | `-0`        | `NaN`       |
+|-------------|-------------|-------------|-------------|-------------|-------------|-------------|
+| `undefined` |   `true`    |   `true`    |    false    |    false    |    false    |    false    |
+| `null`      |   `true`    |   `true`    |    false    |    false    |    false    |    false    |
+| `"0"`       |    false    |    false    |   `true`    |   `true`    |   `true`    |    false    |
+| `0`         |    false    |    false    |   `true`    |   `true`    |   `true`    |    false    |
+| `-0`        |    false    |    false    |   `true`    |   `true`    |   `true`    |    false    |
+| `NaN`       |    false    |    false    |    false    |    false    |    false    |    false    |
+
+`a === b - Strict Equality Comparison`
+|             | `undefined` | `null`      | `"0"`       | `0`         | `-0`        | `NaN`       |
+|-------------|-------------|-------------|-------------|-------------|-------------|-------------|
+| `undefined` |   `true`    |    false    |    false    |    false    |    false    |    false    |
+| `null`      |    false    |   `true`    |    false    |    false    |    false    |    false    |
+| `"0"`       |    false    |    false    |   `true`    |    false    |    false    |    false    |
+| `0`         |    false    |    false    |    false    |   `true`    |   `true`    |    false    |
+| `-0`        |    false    |    false    |    false    |   `true`    |   `true`    |    false    |
+| `NaN`       |    false    |    false    |    false    |    false    |    false    |    false    |
+
+`[a].includes(b)` - SameValueZero
+|             | `undefined` | `null`      | `"0"`       | `0`         | `-0`        | `NaN`       |
+|-------------|-------------|-------------|-------------|-------------|-------------|-------------|
+| `undefined` |   `true`    |    false    |    false    |    false    |    false    |    false    |
+| `null`      |    false    |   `true`    |    false    |    false    |    false    |    false    |
+| `"0"`       |    false    |    false    |   `true`    |    false    |    false    |    false    |
+| `0`         |    false    |    false    |    false    |   `true`    |   `true`    |    false    |
+| `-0`        |    false    |    false    |    false    |   `true`    |   `true`    |    false    |
+| `NaN`       |    false    |    false    |    false    |    false    |    false    |   `true`    |
+
+`Object.is(a, b)` - SameValue
+|             | `undefined` | `null`      | `"0"`       | `0`         | `-0`        | `NaN`       |
+|-------------|-------------|-------------|-------------|-------------|-------------|-------------|
+| `undefined` |   `true`    |    false    |    false    |    false    |    false    |    false    |
+| `null`      |    false    |   `true`    |    false    |    false    |    false    |    false    |
+| `"0"`       |    false    |    false    |   `true`    |    false    |    false    |    false    |
+| `0`         |    false    |    false    |    false    |   `true`    |    false    |    false    |
+| `-0`        |    false    |    false    |    false    |    false    |   `true`    |    false    |
+| `NaN`       |    false    |    false    |    false    |    false    |    false    |   `true`    |
+
 ## Language Evolution
 
 - **ES 5. 5.1 (2009, 2011)**
