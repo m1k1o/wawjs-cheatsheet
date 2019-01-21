@@ -1746,7 +1746,7 @@ lsof.assertOpen(file); // Súbor zostal otvorený.
 ```
 
 Akonahle pajpujeme 2 3 4 streamy, už je tažký error handling. Ak nastane chyba, niektoré možno zostanú otvorené.
-- Halvná výhoda metódy `pipeline()` je, že v prípade chyby uzvare streamy.
+- Hlavná výhoda metódy `pipeline()` je, že v prípade chyby uzvare streamy.
 
 ```js
 pipeline(input, transform, output, () => {
