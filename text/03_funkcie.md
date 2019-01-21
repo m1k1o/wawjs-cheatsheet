@@ -112,7 +112,7 @@ arr.push({});   /**/   arr.push(function() { /*...*/ });
 o1.data = {};   /**/   o1.data = function() { /*...*/ };
 ```
 ## this
-### Objektovo Orinetovane programovanie
+### Objektovo Orientovane programovanie
 - In OO objects have behavior (methods)
 - We call methods on specific objects.
 - Context is enclosing/parent object.
