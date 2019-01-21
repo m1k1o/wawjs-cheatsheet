@@ -259,7 +259,9 @@ Object.is(       {}, {}     )    // false
 ```
 
 ### Equality Matrix
+
 `a == b` - Abstract Equality Comparison
+
 |             | `undefined` | `null`      | `"0"`       | `0`         | `-0`        | `NaN`       |
 |-------------|-------------|-------------|-------------|-------------|-------------|-------------|
 | `undefined` |   `true`    |   `true`    |    false    |    false    |    false    |    false    |
@@ -270,6 +272,7 @@ Object.is(       {}, {}     )    // false
 | `NaN`       |    false    |    false    |    false    |    false    |    false    |    false    |
 
 `a === b - Strict Equality Comparison`
+
 |             | `undefined` | `null`      | `"0"`       | `0`         | `-0`        | `NaN`       |
 |-------------|-------------|-------------|-------------|-------------|-------------|-------------|
 | `undefined` |   `true`    |    false    |    false    |    false    |    false    |    false    |
@@ -280,6 +283,7 @@ Object.is(       {}, {}     )    // false
 | `NaN`       |    false    |    false    |    false    |    false    |    false    |    false    |
 
 `[a].includes(b)` - SameValueZero
+
 |             | `undefined` | `null`      | `"0"`       | `0`         | `-0`        | `NaN`       |
 |-------------|-------------|-------------|-------------|-------------|-------------|-------------|
 | `undefined` |   `true`    |    false    |    false    |    false    |    false    |    false    |
@@ -290,6 +294,7 @@ Object.is(       {}, {}     )    // false
 | `NaN`       |    false    |    false    |    false    |    false    |    false    |   `true`    |
 
 `Object.is(a, b)` - SameValue
+
 |             | `undefined` | `null`      | `"0"`       | `0`         | `-0`        | `NaN`       |
 |-------------|-------------|-------------|-------------|-------------|-------------|-------------|
 | `undefined` |   `true`    |    false    |    false    |    false    |    false    |    false    |
