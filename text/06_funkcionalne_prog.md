@@ -43,7 +43,7 @@ const compose = (f1, f2, f3, f4) => value => f1(f2(f3(f4(value))));
 Function cannot depend on any mutable state.
 
 ### Bad - dependency on: 
-- captured let, var 
+- captured `let`, `var`.
 - captured const but with with mutable value
 - dependency on mutable or impure function
 - methods are impure by definition
@@ -150,7 +150,7 @@ Create new function, call the original.
 
 ```js
 function orig1(b, c) { return b + c; }
-function orig1(x, y, z) { return x * y * z; }
+function orig2(x, y, z) { return x * y * z; }
 
 function wrap(fn) {
     return function(newParam, ...originalParams) {
@@ -163,7 +163,7 @@ const wrapped1 = wrap(orig1);
 const wrapped2 = wrap(orig2);
 
 wrapped1("test1", 1, 2) // 3
-wrapped1("test1", 1, 2, 3); // 6
+wrapped2("test1", 1, 2, 3); // 6
 ```
 
 ## Immutability
@@ -184,10 +184,10 @@ full_name; // Bill Gates
 ### Mutable
 ```js
 var arr = [1];
-var new_arr = arr.push(2);
+var x = arr.push(2);
 
 arr; // [1, 2]
-new_arr; // 2 (arr.legth)
+x; // 2 (arr.length)
 ```
 
 ### How to acheive immutability?
@@ -258,7 +258,7 @@ const object1 = {
 
 const object2 = { ...object1};
 // OR
-const object2 = Object.assign({}, oobject1};
+const object2 = Object.assign({}, object1};
 
 // Add / Modify property
 object2.property2 = 9;
@@ -323,8 +323,22 @@ object2 = {
 Nested properties are still going to be copied by reference.
 
 ```js
-let object1 = { a: 42 }; // ...
+let object1 = {
+    a: 42
+    obj: {
+        b: 3
+    }
+};
+
 let object2 = Object.assign({}, object1);
+
+// Primitives
+object2.a = 5;
+object1.a; // 42
+
+// Objects are copied by refference
+object2.obj.b = 5;
+object1.obj.b; // 6 !!!
 ```
 
 #### Deep copy

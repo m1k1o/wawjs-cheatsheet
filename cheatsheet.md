@@ -844,7 +844,7 @@ o.age = "slon"; // TypeError: age must be integer
 - The data type "symbol" is a **primitive data type**.
 - This data type is used as the key for an object property when the property is intended to be **private, for the internal use** of a class or an object type
 - When a symbol value is used as the identifier in a property assignment, the property (like the symbol) is anonymous; and also is **non-enumerable**. 
-- non-emuberable means it will not show in for( ... in ...)", 
+- non-emuberable means it will not show in for( ... in ... )", 
 - anonymous, it will not show up in the result array of `Object.getOwnPropertyNames()`.
 
 ```js
@@ -904,7 +904,7 @@ var o = {
 };
 
 for (let k in o) {
-    conosle.log(l);
+    conosle.log(k);
 }
 
 /*
@@ -935,6 +935,31 @@ for (let k in e) {
 job
 */
 ```
+
+### Introspection Table
+
+|                                      | String    | Number    | Symbols   | Inherited | Non-Enum. |   Get     |    Set    |
+|--------------------------------------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|
+| `x = o.p`                            | **Yes†** |   No      |   -       | **Yes**   | **Yes**   | **Yes**   |   -       |
+| `x = o[p]`                           | **Yes**   | **Yes**   | **Yes**   | **Yes**   | **Yes**   | **Yes**   |   -       |
+| `Object.keys()`                      | **Yes**   | **Yes\*** |   No      |   No      |   No      | **Yes**   | **Yes**   |
+| `Object.entries()`                   | **Yes**   | **Yes\*** |   No      |   No      |   No      | **Yes**   | **Yes** |
+| `Object.values()`                    | **Yes**   | **Yes\*** |   No      |   No      |   No      | **Yes**   | **Yes** |
+| `for...in`                           | **Yes**   | **Yes**   |   No      | **Yes**   |   No      | **Yes**   | **Yes**   |
+| `in operator`                        | **Yes**   | **Yes**   | **Yes**   | **Yes**   | **Yes**   | **Yes**   | **Yes**   |
+| `delete`                             | **Yes**   | **Yes**   | **Yes**   |   No      | **Yes**   | **Yes**   | **Yes**   |
+| `Object.getOwnPropertyNames()`       | **Yes**   | **Yes**   |   No      |   No      | **Yes**   | **Yes**   | **Yes**   |
+| `Object.getOwnPropertySymbols()`     |   No      |   No      | **Yes**   |   No      | **Yes**   | **Yes‡** | **Yes‡** |
+| `Object.getOwnPropertyDescriptors()` |   -       |   -       |   -       |   No      |   -       |   -       |   -       |
+| `JSON.stringify()`                   | **Yes**   | **Yes**   |   No      |   No      |   No      | **Yes**   |   -       |
+| `Object.assign()`                    | **Yes**   |   No\*    | **Yes**   |   No      |   No      | **Yes**   | **Yes**   |
+| `Object.prototype.hasOwnProperty()`  | **Yes**   |   No\*    | **Yes**   |   No      | **Yes**   | **Yes**   | **Yes**   |
+
+† The key can not contain whitespace.
+
+‡ The key has to be `Symbol`.
+
+\* The key will always be converted to a string.
 # <a name="anchor_5"></a> 5 Patterny
 
 ## sync
@@ -1165,7 +1190,7 @@ var mylib = require("./mylib.cjs.js");
 console.log(mylib.increment());
 ```
 ### ESM
-- `export` statement: `export default` or named..
+- `export` statement: `export default` or named.
 - `import` statement.
 - Sync / async loading.
 - Static module structure.
@@ -1318,7 +1343,7 @@ const compose = (f1, f2, f3, f4) => value => f1(f2(f3(f4(value))));
 Function cannot depend on any mutable state.
 
 ### Bad - dependency on: 
-- captured let, var 
+- captured `let`, `var`.
 - captured const but with with mutable value
 - dependency on mutable or impure function
 - methods are impure by definition
@@ -1425,7 +1450,7 @@ Create new function, call the original.
 
 ```js
 function orig1(b, c) { return b + c; }
-function orig1(x, y, z) { return x * y * z; }
+function orig2(x, y, z) { return x * y * z; }
 
 function wrap(fn) {
     return function(newParam, ...originalParams) {
@@ -1438,7 +1463,7 @@ const wrapped1 = wrap(orig1);
 const wrapped2 = wrap(orig2);
 
 wrapped1("test1", 1, 2) // 3
-wrapped1("test1", 1, 2, 3); // 6
+wrapped2("test1", 1, 2, 3); // 6
 ```
 
 ## Immutability
@@ -1459,10 +1484,10 @@ full_name; // Bill Gates
 ### Mutable
 ```js
 var arr = [1];
-var new_arr = arr.push(2);
+var x = arr.push(2);
 
 arr; // [1, 2]
-new_arr; // 2 (arr.legth)
+x; // 2 (arr.length)
 ```
 
 ### How to acheive immutability?
@@ -1533,7 +1558,7 @@ const object1 = {
 
 const object2 = { ...object1};
 // OR
-const object2 = Object.assign({}, oobject1};
+const object2 = Object.assign({}, object1};
 
 // Add / Modify property
 object2.property2 = 9;
@@ -1598,8 +1623,22 @@ object2 = {
 Nested properties are still going to be copied by reference.
 
 ```js
-let object1 = { a: 42 }; // ...
+let object1 = {
+    a: 42
+    obj: {
+        b: 3
+    }
+};
+
 let object2 = Object.assign({}, object1);
+
+// Primitives
+object2.a = 5;
+object1.a; // 42
+
+// Objects are copied by refference
+object2.obj.b = 5;
+object1.obj.b; // 6 !!!
 ```
 
 #### Deep copy

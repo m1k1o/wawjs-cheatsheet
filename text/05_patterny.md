@@ -228,7 +228,7 @@ var mylib = require("./mylib.cjs.js");
 console.log(mylib.increment());
 ```
 ### ESM
-- `export` statement: `export default` or named..
+- `export` statement: `export default` or named.
 - `import` statement.
 - Sync / async loading.
 - Static module structure.

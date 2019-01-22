@@ -97,7 +97,7 @@ o.age = "slon"; // TypeError: age must be integer
 - The data type "symbol" is a **primitive data type**.
 - This data type is used as the key for an object property when the property is intended to be **private, for the internal use** of a class or an object type
 - When a symbol value is used as the identifier in a property assignment, the property (like the symbol) is anonymous; and also is **non-enumerable**. 
-- non-emuberable means it will not show in for( ... in ...)", 
+- non-emuberable means it will not show in for( ... in ... )", 
 - anonymous, it will not show up in the result array of `Object.getOwnPropertyNames()`.
 
 ```js
@@ -157,7 +157,7 @@ var o = {
 };
 
 for (let k in o) {
-    conosle.log(l);
+    conosle.log(k);
 }
 
 /*
@@ -188,3 +188,28 @@ for (let k in e) {
 job
 */
 ```
+
+### Introspection Table
+
+|                                      | String    | Number    | Symbols   | Inherited | Non-Enum. |   Get     |    Set    |
+|--------------------------------------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|
+| `x = o.p`                            | **Yes†** |   No      |   -       | **Yes**   | **Yes**   | **Yes**   |   -       |
+| `x = o[p]`                           | **Yes**   | **Yes**   | **Yes**   | **Yes**   | **Yes**   | **Yes**   |   -       |
+| `Object.keys()`                      | **Yes**   | **Yes\*** |   No      |   No      |   No      | **Yes**   | **Yes**   |
+| `Object.entries()`                   | **Yes**   | **Yes\*** |   No      |   No      |   No      | **Yes**   | **Yes** |
+| `Object.values()`                    | **Yes**   | **Yes\*** |   No      |   No      |   No      | **Yes**   | **Yes** |
+| `for...in`                           | **Yes**   | **Yes**   |   No      | **Yes**   |   No      | **Yes**   | **Yes**   |
+| `in operator`                        | **Yes**   | **Yes**   | **Yes**   | **Yes**   | **Yes**   | **Yes**   | **Yes**   |
+| `delete`                             | **Yes**   | **Yes**   | **Yes**   |   No      | **Yes**   | **Yes**   | **Yes**   |
+| `Object.getOwnPropertyNames()`       | **Yes**   | **Yes**   |   No      |   No      | **Yes**   | **Yes**   | **Yes**   |
+| `Object.getOwnPropertySymbols()`     |   No      |   No      | **Yes**   |   No      | **Yes**   | **Yes‡** | **Yes‡** |
+| `Object.getOwnPropertyDescriptors()` |   -       |   -       |   -       |   No      |   -       |   -       |   -       |
+| `JSON.stringify()`                   | **Yes**   | **Yes**   |   No      |   No      |   No      | **Yes**   |   -       |
+| `Object.assign()`                    | **Yes**   |   No\*    | **Yes**   |   No      |   No      | **Yes**   | **Yes**   |
+| `Object.prototype.hasOwnProperty()`  | **Yes**   |   No\*    | **Yes**   |   No      | **Yes**   | **Yes**   | **Yes**   |
+
+† The key can not contain whitespace.
+
+‡ The key has to be `Symbol`.
+
+\* The key will always be converted to a string.
