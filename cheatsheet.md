@@ -230,7 +230,7 @@ String(Symbol('s')) // 'Symbol('s')'
 ```js
 Nubmer(undefined)   // NaN
 Nubmer(null)        // 0
-Nubmer(" 123 ")     // 12
+Nubmer(" 123 ")     // 123
 Nubmer("-12.34")    // -12.34
 Nubmer("\n")        // 0
 Nubmer(" 12s ")     // NaN
